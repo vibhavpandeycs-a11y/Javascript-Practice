@@ -1,17 +1,44 @@
 // Number guessing game
 
-let userInput = 56;
-const computerGuess = Math.floor(Math.random() * 101);
+const prompt = require("prompt-sync")();
+score = 0;
 
-if (Number.isNaN(userInput) == true) {
-    console.log("Enter a number to play");
+function numberGuessingGame() {
+    while (true) {
+        let computerGuess = Math.floor(Math.random() * 100);
+
+        while (true) {
+            console.log("Type 'exit' to quit")
+            let userGuess = prompt("Your guess: ");
+            
+            if (userGuess.toLowerCase() === "exit") {
+                return score;
+            }
+            else if (Number.isNaN(Number(userGuess)) === true) {
+                console.error("You must enter a number to play!");
+            }
+            else if (Number(userGuess) < 0 || userGuess >= 100) {
+                console.log("The number must be between 0 to 100!");
+            }
+            else if (Number(userGuess) > computerGuess) {
+                console.log("Guess lower!");
+            }
+            else if (Number(userGuess) < computerGuess) {
+                console.log("Guess higher!");
+            }
+            else if (Number(userGuess) === computerGuess) {
+                score += 1;
+                console.log("Congratulations! You guessed it right.");
+                console.log(`Answer: ${computerGuess}`);
+                console.log(`Current Score: ${score}`);
+                break;
+            }
+            else if (userGuess.toLowerCase() === "exit") {
+                return score;
+            }
+        }
+    }
 }
-else if (userInput < 0 || userInput > 100) {
-    console.log("The number must be from 0 to 100");
-}
-else if (userInput == computerGuess) {
-    console.log("You guessed correct!");
-}
-else {
-    console.log("Better luck next time");
-}
+
+finalScore = numberGuessingGame();
+console.log(`Final Score: ${finalScore}`);
