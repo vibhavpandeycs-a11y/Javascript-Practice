@@ -1,7 +1,7 @@
 // Number guessing game
 
 const prompt = require("prompt-sync")();
-score = 0;
+let score = 0;
 
 function numberGuessingGame() {
     while (true) {
@@ -40,5 +40,5 @@ function numberGuessingGame() {
     }
 }
 
-finalScore = numberGuessingGame();
+let finalScore = numberGuessingGame();
 console.log(`Final Score: ${finalScore}`);
